@@ -1,17 +1,19 @@
 ---
 title: "The Perfect Fit"
-subtitle: "STAT 385 FA2018 - Team 24"
-abstract: |
-          | This project examines possible variables that might affect median house value, along with several other variables such as climate, population density, job market, etc. This allows a user to find a cheapest area to live while simultaneously satisfying their personal preferences of what type of are they want to live in.
-date: "March 15, 2019"
 author:
-  - Jacob Hart
-  - Landon Hess
-  - Jami Tugas
-  - Joseph Wang
+- Jacob Hart
+- Landon Hess
+- Jami Tugas
+- Joseph Wang
+date: "March 15, 2019"
+output:
+  pdf_document: default
+  html_document:
+    df_print: paged
 bibliography: bibliography.bib
-output: 
-  bookdown::pdf_document2
+subtitle: STAT 385 FA2018 - Team 24
+abstract: |
+  | This project examines possible variables that might affect median house value, along with several other variables such as climate, population density, job market, etc. This allows a user to find the most affordable area to live in while simultaneously satisfying their personal preferences of what type of environment they value.
 ---
 
 ```{r set-options, include = FALSE}
@@ -60,7 +62,7 @@ There is a map of crime data [@crime], a map of home prices [@zillow], and a web
 
 When the program starts, web scraping will begin with `rvest` [@rvest]. The HTML of the page will have to be parsed into data frames. While this is happening, a loading screen will be displayed as this may take a while. Variables of interest will be spliced from the data sets and combined into a master data frame.
 
-On the UI side, the main section will be a map of the counties of the United States, created with `ggplot2`. There will be a sidebar with two tabs. The first tab will be a search panel. The user will be able to select bounds for variables of interest (Avg. temperature, Crime rate, etc.), and search for counties that match these criteria. The counties on the map will change color based on how well they match the parameters. Counties that completely match the desired values will appear green. Those that have properties within some relative error will appear yellow, and the remaining counties will appear gray. From here, the user is able to select a county. This will automatically switch to the second tab, Details.
+On the UI side, the main section will be a map of the counties of the United States, created with `ggplot2`. There will be a sidebar with two tabs. The first tab will be a search panel. The user will be able to select bounds for variables of interest (Avg. temperature, Crime rate, etc.), and search for counties that match these criteria. The counties on the map will be color coded based on how well they match the parameters. Counties that completely match the desired values will appear green. Those that have properties within some relative error will appear yellow, and the remaining counties will appear gray. From here, the user is able to select a county. This will automatically switch to the second tab, Details.
 
 In the details tab, there will be bar graphs that show every variable of interest for the selected county, colored based on how well they fit the search criteria. These will also be created with `ggplot2`. Because of the interactivity of the project, `shiny` will of course be used.
 
@@ -96,13 +98,9 @@ knitr::include_graphics("images/GanttChart.png")
 
 # Conclusion
 
-Essentially, this project is geared towards those looking for the most affordable location to live at given their own preferences. This is done by allowing users to filter out variables that they don't care about. For example, someone who is already retired and doesn't have kids may not care a lot about the nearby education systems as opposed to a family with kids.
+Essentially, this project is geared towards those looking for the most affordable location to live at given their own preferences. This is done by allowing users to filter out variables they don't care about. For example, someone who is already retired and doesn't have kids may not care a lot about the nearby education systems as opposed to a family with kids. Or an individual may prefer relatively colder weather as opposed to something like the deserts in Texas.  
 
-In summary, someone could pick what they variable(s) the most (such as a warmer climate or lower crime rate) and find the most affordable location based off of what they value. 
-
-\newpage
-
-# Appendix
+In summary, someone could pick what variable(s) they value most (such as a warmer climate or lower crime rate) and find the most affordable location based off of their own preference. 
 
 \newpage
 
