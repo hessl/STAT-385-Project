@@ -53,38 +53,9 @@ sapply(pkg_list, require, character.only = TRUE)
 
 # Introduction
 
-The **introduction** section provides a preview of the project's focus. Within
-this section, provide an overview on the selected topic for the consumption of a
-manager. In essence, the manager must be able to understand what the project is
-and why they should support the endeavor. You are allowed to make the assumption
-that the manager is knowledgeable in base R concepts. Make sure to answer the
-following questions:
+For our Project, we decided to make a program that makes it simple and easy for the user to find a county in the United States that fits their desired needs. When people are choosing where to live, there are some standard factors that most people focus on in order to choose the best county to live in$^1$. With our program you will be able to customize the parameters of multiple factors, and immediately see a map of the results that match your selections. This program will use `R` and `shiny` in order to make an easy to use, and highly beneficial tool for people that are looking for counties with certain attributes. The data being used will be from multiple sources that has different information about each county in the United States. These factors will include things such as Average Temperature, Crime Rate, Population Density, etc. The user will be able to select parameters for each one in order to find the best county for them.
 
-- What problem or topic are you addressing?
-- Why is it interesting or important? In particular, what evidence supports this   conclusion?
-- Cite papers or reputable sources that back up this claim. (You may want to find - material using Google Scholar.)
-- Where did the problem or topic come from?
-- What is your idea for addressing the problem or topic?
-- How does your idea match with the course’s focus on statistical programming?
 
-Consider adding subsections in this section. For example, consider adding
-a **data** subsection. The data subsection would describe your data. 
-What is it? Where did it come from? How will it be useful in answering your problem?
-Provide references to information about the data, but explain enough that your
-reader does not need to utilize them.
-
-Keep in mind, you may use or construct any dataset of your choice under two
-conditions:
-
-1. there is a minimum of **500** observations and **10** variables;
-2. data is _not_ from either UC Irvine Machine Learning Repository or Kaggle,
-   _not_ used as a data set in the course, and _not_ found in textbooks.
-   
-The dataset may be relevant to research outside of this course, another field,
-or some other interest of the groups. If you have any questions about whether 
-your data is appropriate, do not hesitate to ask. If you plan to use data from
-either a research project or current job be sure to gain permission from the
-data controller.
 
 # Related Work
 
@@ -224,6 +195,8 @@ reference extremely easy. For more details, see the next section...
 \newpage
 
 # References
+
+1.  [Best Counties to Live in America](https://www.niche.com/places-to-live/search/best-counties/)
 
 The **References** section acts as a bibliography for all papers referenced
 in the **Introduction**, **Related Works**, and **Method** sections. The
