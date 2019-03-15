@@ -57,7 +57,7 @@ With our program you will be able to customize the parameters of multiple factor
 
 # Related Work
 
-There is a map of crime data [@crime], a map of home prices [@zillow], and a website for climate data [@climate], but there isn't one that combines all of these, and more.
+Initially, we discussed whether we should narrow in the types of factors to be included in the project. Specifically, factors that are all related to crimes, so that the goal of this project is to find the safest counties to live in. But, crime maps already exist. So, we changed our motivation to create a program that users can play around with in order to find the best counties to live in. There is already a map of crime data [@crime], a map of home prices [@zillow], and a website for climate data [@climate], but there isn't one that combines all of these, and more. So why not combine and utilize all these data to create user-friendly program? 
 
 # Methods
 
