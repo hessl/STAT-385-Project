@@ -16,6 +16,8 @@ abstract: |
   | This project examines possible variables that might affect median house value, along with several other variables such as climate, population density, job market, etc. This allows a user to find the most affordable area to live in while simultaneously satisfying their personal preferences of what type of environment they value.
 ---
 
+\tableofcontents
+
 ```{r set-options, include = FALSE}
 # Sets default chunk options
 knitr::opts_chunk$set(
