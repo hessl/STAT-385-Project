@@ -7,7 +7,8 @@ author:
 - Joseph Wang
 date: "March 15, 2019"
 output:
-  pdf_document: default
+  pdf_document:
+    toc: true
   html_document:
     df_print: paged
 bibliography: bibliography.bib
@@ -72,26 +73,15 @@ knitr::include_graphics("images/ui-prototype.png")
 
 # Feasibility
 
-- Is this project able to be completed before the end of the semester?
-    + The concept that we chose for this project is doable and the applications needed in order to be successful are within our skill set. We thoroughly talked and envisioned what we wanted to include in our project. Furthermore, each member was assigned by a task that they're most comfortable with.  With a clear vision, a fair distribution of tasks, and an established timeline, we are comfortable to say that we will be able to complete this project by the end of the semester. 
-- What steps must occur to complete the project before the end of the semester?
-    + Web scraping: Extract data from multiple websites, specifically data related to the crime rate, school system, temperature, median home value, etc. Essentially,  factors that one might consider when considering the best county to live. 
-    + Parsing the data gathered, choosing only the variables we wanted to include, and combine these data to a big data frame. 
-    + Create the user interactive portion of the project
-        - Create an interactive map of the United States, with a focus on every county. 
-        - Include a search panel and movable bounds for variables of interest
-        - Include a details tab that shows exactly what the name suggests
-    + Integrating the big data frame created from the parsed data into the UI portion 
-- What is the work plan to accomplish the necessary tasks before the end of the
-  semester?
-  - Specify who is doing what and when.
-      + Web scraping: All members 
-      + Parsing and combining parsed data to a massive data frame: Jami 
-      + Interactive Portion: Landon, Joseph, Jacob 
-      + Data + UI: All members 
-  - Consider making a [Gantt chart](https://en.wikipedia.org/wiki/Gantt_chart)
-    to highlight each stage of the project.
+The concept that we chose for this project is doable and the applications needed in order to be successful are within our skill set. We thoroughly talked and envisioned what we wanted to include in our project. Furthermore, each member was assigned by a task that they're most comfortable with.  With a clear vision, a fair distribution of tasks, and an established timeline, we are comfortable to say that we will be able to complete this project by the end of the semester.
 
+To start, we must extract data from multiple websites, specifically data related to the crime rate, school system, temperature, median home value, etc. Essentially,  factors that one might consider when considering the best county to live. Then we must parse gathered data, choosing only the variables we wanted to include, and combine these data to a big data frame. Create the user interactive portion of the project, create an interactive map of the United States, with a focus on every county, include a search panel and movable bounds for variables of interest, and include a details tab that shows exactly what the name suggests. Then we must integrate the big data frame created from the parsed data into the UI portion. The work will be divided like so:
+  + Web scraping: All members 
+  + Parsing and combining parsed data to a massive data frame: Jami 
+  + Interactive Portion: Landon, Joseph, Jacob 
+  + Data + UI: All members 
+
+A chart is shown below for easy visualization.
 ```{r fig.cap = "Expected Timeline", fig.pos = 'H'}
 knitr::include_graphics("images/GanttChart.png")
 ```
