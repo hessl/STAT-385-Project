@@ -1,5 +1,3 @@
-library(shiny)
-
 # Define UI for application
 shinyUI(fluidPage(
 
@@ -10,7 +8,7 @@ shinyUI(fluidPage(
     sidebarLayout(
         # Main panel will be the map of the United States. The plot will be made on the server side with ggplot2.
         mainPanel(
-            textOutput("this is where the plot goes")
+            leafletOutput("map", height = 1000)
         ),
         
         # The sidebar panel will have all of the information as listed in the project proposal.
