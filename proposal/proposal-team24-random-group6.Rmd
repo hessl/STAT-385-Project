@@ -57,7 +57,7 @@ With our program you will be able to customize the parameters of multiple factor
 
 # Related Work
 
-There is a map of crime data [@crime], a map of home prices [@zillow], and a website for climate data [@climate], but there isn't one that combines all of these, and more.
+Initially, we discussed whether we should narrow in the types of factors to be included in the project. Specifically, factors that are all related to crimes, so that the goal of this project is to find the safest counties to live in. But, crime maps already exist. So, we changed our motivation to create a program that users can play around with in order to find the best counties to live in. There is already a map of crime data [@crime], a map of home prices [@zillow], and a website for climate data [@climate], but there isn't one that combines all of these, and more. So why not combine and utilize all these data to create user-friendly program? 
 
 # Methods
 
@@ -76,6 +76,7 @@ knitr::include_graphics("images/ui-prototype.png")
 The concept that we chose for this project is doable and the applications needed in order to be successful are within our skill set. We thoroughly talked and envisioned what we wanted to include in our project. Furthermore, each member was assigned by a task that they're most comfortable with.  With a clear vision, a fair distribution of tasks, and an established timeline, we are comfortable to say that we will be able to complete this project by the end of the semester.
 
 To start, we must extract data from multiple websites, specifically data related to the crime rate, school system, temperature, median home value, etc. Essentially,  factors that one might consider when considering the best county to live. Then we must parse gathered data, choosing only the variables we wanted to include, and combine these data to a big data frame. Create the user interactive portion of the project, create an interactive map of the United States, with a focus on every county, include a search panel and movable bounds for variables of interest, and include a details tab that shows exactly what the name suggests. Then we must integrate the big data frame created from the parsed data into the UI portion. The work will be divided like so:
+
   + Web scraping: All members 
   + Parsing and combining parsed data to a massive data frame: Jami 
   + Interactive Portion: Landon, Joseph, Jacob 
