@@ -30,7 +30,17 @@ shinyServer(function(input, output, session) {
     selected_state = click$id
     output$sel_state_name = renderText(click$id)
     
+    output$plot_PA = renderPlot({
+      ggplot(df_PA[df_PA$State == click$id,]) +
+        aes(x = State, y = value, fill = Affiliation) +
+        geom_bar(stat = "identity") + coord_flip() +
+        theme_void() + scale_fill_manual(values = c("dodgerblue2", "gray", "firebrick2")) +
+        geom_text(aes(label = paste0(value, "%")), size = 3.5)
+    })
+    
     # Switch to details tab.
     updateTabsetPanel(session, inputId = "tabs", selected = "detailsTab")
   })
+  
+  
 })
