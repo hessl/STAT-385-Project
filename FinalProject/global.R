@@ -63,6 +63,15 @@ costofliv_index = costofliv %>% html_nodes(".excel148+ .excel149 , .excel139+ .e
 
 df_costofliv = data.frame("State" = costofliv_states, "Rank" = costofliv_rank, "Index" = costofliv_index)
 
+## Crime Rate
+download.file("https://www.usnews.com/news/best-states/rankings/crime-and-corrections/public-safety", "crimes.html")
+rank = crimes %>% html_nodes("td:nth-child(1) .evdtWU") %>% html_text() %>% as.numeric()
+crimes_states = crimes %>% html_nodes(".dPwHPz") %>% html_text()
+property_crime_rate = crimes %>% html_nodes("td:nth-child(5) .evdtWU") %>% html_text() %>% as.numeric()
+violent_crime_rate = crimes %>% html_nodes("td:nth-child(7) .evdtWU") %>% html_text() %>% as.numeric()
+
+df_crimes = data.frame("State" = crimes_states, "Rank" = rank, "Property Crime Rate" = property_crime_rate, "Violent Crime Rate" = violent_crime_rate)
+
 print("Global script ran successfully.")
 
 
