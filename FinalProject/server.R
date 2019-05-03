@@ -60,6 +60,8 @@ shinyServer(function(input, output, session) {
   observeEvent(input$map_shape_click, {
     click <- input$map_shape_click
     selected_state = click$id
+    state_data = df_master[df_master$State == selected_state,]
+    
     output$sel_state_name = renderText(click$id)
   
     output$plot_PA = renderPlot({
@@ -68,10 +70,32 @@ shinyServer(function(input, output, session) {
         aes(x = State, y = value, fill = Affiliation) +
         geom_bar(stat = "identity") + coord_flip() +
         theme_void() + scale_fill_manual(values = c("dodgerblue2", "gray", "firebrick2")) +
-        geom_text(aes(label = paste0(value, "%")), size = 3.5)
+        geom_text(aes(label = paste0(value, "%")), position = position_stack(vjust = 0.5), size = 4)
     })
     
-    output$sel_state_col = renderText(paste("Cost of living index: ", df_master[df_master$State == selected_state, "COL.Index"]))
+    # Avg. temp. gauge
+    output$sel_state_temp = renderGauge({
+      gauge(state_data$Average.Temperature, 25, 75, symbol = "°F")
+    })
+    
+    # Density gauge
+    output$sel_state_dens = renderGauge({
+      gauge(state_data$dens, 0, 1000)
+    })
+    
+    # Cost of living gauge
+    output$sel_state_col = renderGauge({
+      gauge(state_data$COL.Index, 80, 200)
+    })
+    
+    # Median income gauge
+    output$sel_state_medi = renderGauge({
+      gauge(round(state_data$Median.Income, 1), 35, 80, symbol = "$")
+    })
+    
+    output$sel_state_schoolrank = renderGauge({
+      gauge(state_data$School.Rank, 1, 50)
+    })
     
     # Switch to details tab.
     updateTabsetPanel(session, inputId = "tabs", selected = "detailsTab")

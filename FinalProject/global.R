@@ -10,6 +10,8 @@ library(geojsonio)
 library(stringr)
 library(tidyr)
 library(dplyr)
+#library(shinydashboard)
+library(flexdashboard)
 
 # Global variables.
 states = geojson_read("https://raw.githubusercontent.com/PublicaMundi/MappingAPI/master/data/geojson/us-states.json", what = "sp")
@@ -67,15 +69,6 @@ df_costofliv[50, "COL.Rank"] = 50 # Since we removed D.C., set Hawaii COL to 50.
 
 df_master = full_join(df_PA, df_at, by = "State") %>% full_join(., df_costofliv, by = "State") %>% full_join(., df_medincome, by = "State") %>% full_join(., df_schoolrank, by = "State")
 df_master$dens = states$density
-
-## Crime Rate
-#download.file("https://www.usnews.com/news/best-states/rankings/crime-and-corrections/public-safety", "crimes.html")
-#rank = crimes %>% html_nodes("td:nth-child(1) .evdtWU") %>% html_text() %>% as.numeric()
-#crimes_states = crimes %>% html_nodes(".dPwHPz") %>% html_text()
-#property_crime_rate = crimes %>% html_nodes("td:nth-child(5) .evdtWU") %>% html_text() %>% as.numeric()
-#violent_crime_rate = crimes %>% html_nodes("td:nth-child(7) .evdtWU") %>% html_text() %>% as.numeric()
-
-#df_crimes = data.frame("State" = crimes_states, "Rank" = rank, "Property Crime Rate" = property_crime_rate, "Violent Crime Rate" = violent_crime_rate)
 
 print("Global script ran successfully.")
 
