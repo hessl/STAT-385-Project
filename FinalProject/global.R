@@ -9,6 +9,7 @@ library(rvest)
 library(geojsonio)
 library(stringr)
 library(tidyr)
+library(dplyr)
 
 # Global variables.
 states = geojson_read("https://raw.githubusercontent.com/PublicaMundi/MappingAPI/master/data/geojson/us-states.json", what = "sp")
@@ -24,7 +25,7 @@ PA_states = poliAffil %>% html_nodes("tbody .left-aligned") %>% html_text()
 PA_rep = poliAffil %>% html_nodes(".left-aligned+ td") %>% html_text() %>% str_replace(., "%", "") %>% as.integer()
 PA_dem = poliAffil %>% html_nodes("td:nth-child(4)") %>% html_text() %>% str_replace(., "%", "") %>% as.integer()
 
-df_PA = data.frame("State" = PA_states[-9], "Democrat" = PA_dem[-9], "Other" = 100 - PA_rep[-9] - PA_dem[-9], "Republican" = PA_rep[-9]) %>% gather("Affiliation", "value", Democrat:Republican)
+df_PA = data.frame("State" = PA_states[-9], "Democrat" = PA_dem[-9], "Other" = 100 - PA_rep[-9] - PA_dem[-9], "Republican" = PA_rep[-9]) #%>% gather("Affiliation", "value", Democrat:Republican)
 
 
 ## Average annual temperature
@@ -32,9 +33,8 @@ download.file("https://www.currentresults.com/Weather/US/average-annual-state-te
 avgtemp = read_html("avgtemp.html")
 at_states = avgtemp %>% html_nodes(".tablecol-1-left a") %>% html_text()
 at_degf = avgtemp %>% html_nodes("td:nth-child(2)") %>% html_text() %>% as.numeric()
-at_degc = avgtemp %>% html_nodes("td:nth-child(3)") %>% html_text() %>% as.numeric()
 
-df_at = data.frame("State" = at_states, "Average Temperature(F)" = at_degf, "Average Temperature(C)" = at_degc) 
+df_at = data.frame("State" = at_states, "Average Temperature" = at_degf) 
 
 ## Median Household Income
 download.file("http://money.com/money/5177566/average-income-every-state-real-value/", destfile = "medincome.html")
@@ -52,7 +52,7 @@ schoolrank_states = schoolrank %>% html_nodes("td:nth-child(2)") %>% html_text()
 schoolrank_rate = schoolrank %>% html_nodes(".center:nth-child(3)") %>% html_text() %>% as.numeric()
 schoolrank_rank = schoolrank %>% html_nodes(".center:nth-child(1)") %>% html_text() %>% as.integer()
 
-df_schoolrank = data.frame("State" = schoolrank_states[-51], "Rank" = schoolrank_rank[-51], "Average Rating" = schoolrank_rate[-51])
+df_schoolrank = data.frame("State" = schoolrank_states[-51], "School Rank" = schoolrank_rank[-51], "Average School Rating" = schoolrank_rate[-51])
 
 ## Cost of Living
 download.file("https://www.missourieconomy.org/indicators/cost_of_living/", "costofliv.html")
@@ -61,8 +61,12 @@ costofliv_states = costofliv %>% html_nodes(".excel147 , .excel143") %>% html_te
 costofliv_rank = costofliv %>% html_nodes(".excel148 , .excel139") %>% html_text() %>% as.integer()
 costofliv_index = costofliv %>% html_nodes(".excel148+ .excel149 , .excel139+ .excel140") %>% html_text() %>% as.numeric()
 
-df_costofliv = data.frame("State" = costofliv_states[-50], "Rank" = costofliv_rank[-50], "Index" = costofliv_index[-50])
+df_costofliv = data.frame("State" = costofliv_states[-50], "COL Rank" = costofliv_rank[-50], "COL Index" = costofliv_index[-50])
+df_costofliv[50, "COL.Rank"] = 50 # Since we removed D.C., set Hawaii COL to 50.
 
+
+df_master = full_join(df_PA, df_at, by = "State") %>% full_join(., df_costofliv, by = "State") %>% full_join(., df_medincome, by = "State") %>% full_join(., df_schoolrank, by = "State")
+df_master$dens = states$density
 
 ## Crime Rate
 #download.file("https://www.usnews.com/news/best-states/rankings/crime-and-corrections/public-safety", "crimes.html")

@@ -13,13 +13,13 @@ shinyUI(fluidPage(
             tabsetPanel(id = "tabs",
                 tabPanel("Search", value = "searchTab", verticalLayout(
                         h4("Search Parameters"),
-                        wellPanel( selectizeInput("poli_affil", "Political Affiliation", choices = c("Choose one" = "", "Democrat", "Republican")),
+                        wellPanel( selectizeInput("poli_affil", "Political Affiliation", choices = c("Democrat", "Republican")),
                                     selectInput("weight_pa", "Weight", weight_opt)),
                         wellPanel( sliderInput("temp", "Average Temperature", min = 20, max = 80, value = c(30,50), step = 5),
                                    selectInput("weight_temp", "Weight", weight_opt)),
                         wellPanel( sliderInput("popdens", "Population Density", min = 0, max = 1200, value = c(0,400), step = 25),
                                     selectInput("weight_dens", "Weight", weight_opt)),
-                        wellPanel( sliderInput("col", "Cost of Living", min = 0, max = 10, value = c(0,5)),
+                        wellPanel( sliderInput("col", "Cost of Living", min = 80, max = 200, value = c(90,150)),
                                     selectInput("weight_col", "Weight", weight_opt)),
                         wellPanel( sliderInput("medincome", "Median Household Income (thousands)", min = 35, max = 80, value = c(40, 50)),
                                     selectInput("weight_medi", "Weight", weight_opt)),
@@ -29,7 +29,8 @@ shinyUI(fluidPage(
                 )),
                 tabPanel("Details", value = "detailsTab",
                         textOutput("sel_state_name", container = h4),
-                        plotOutput("plot_PA", height = "200px")
+                        plotOutput("plot_PA", height = "200px"),
+                        textOutput("sel_state_col")
                 )
             )
         ),
