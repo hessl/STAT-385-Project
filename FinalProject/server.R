@@ -1,6 +1,15 @@
+
 # Define server logic
 shinyServer(function(input, output, session) {
   
+  
+  pct_grn = eventReactive({
+    input$search
+  },{
+    n = as.numeric(input$weight_col) + as.numeric(input$weight_dens) + as.numeric(input$weight_pa) + as.numeric(input$weight_temp) + as.numeric(input$weight_medi) + as.numeric(input$weight_school)
+    print(n)
+    runif(50)
+  })
   
   # Create the map with global 'states' variable.
   output$map <- renderLeaflet({
@@ -12,7 +21,7 @@ shinyServer(function(input, output, session) {
         layerId = states$name,
         weight = 1,
         dashArray = 2,
-        fillColor = "green",
+        fillColor = rgb(0, 0, 0, 1),
         color = "white",
         highlight = highlightOptions(
           weight = 2,
@@ -20,7 +29,6 @@ shinyServer(function(input, output, session) {
           bringToFront = TRUE,
           dashArray = ""
         )
-        
       )
   }) # End render leaflet.
   
@@ -29,7 +37,7 @@ shinyServer(function(input, output, session) {
     click <- input$map_shape_click
     selected_state = click$id
     output$sel_state_name = renderText(click$id)
-    
+  
     output$plot_PA = renderPlot({
       ggplot(df_PA[df_PA$State == click$id,]) +
         aes(x = State, y = value, fill = Affiliation) +
@@ -42,5 +50,25 @@ shinyServer(function(input, output, session) {
     updateTabsetPanel(session, inputId = "tabs", selected = "detailsTab")
   })
   
+  # Search parameter change observer.
+  observe({
+    pct = pct_grn()
+    
+    # Must use leaflet proxy to update pre-existing map.
+    leafletProxy("map", data = states) %>% clearShapes() %>%
+      addPolygons(
+        layerId = states$name,
+        weight = 1,
+        dashArray = 2,
+        fillColor = rgb(0, pct, 0, 1),
+        color = "white",
+        highlight = highlightOptions(
+          weight = 2,
+          opacity = 1,
+          bringToFront = TRUE,
+          dashArray = ""
+        )
+      )
+  })
   
 })
