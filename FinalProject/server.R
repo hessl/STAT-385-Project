@@ -28,8 +28,9 @@ shinyServer(function(input, output, session) {
     school_pct = df_master$School.Rank <= input$school[2] & df_master$School.Rank >= input$school[1]
     
     if (n > 0) {
-      # Return a weighted average between 0-1. To make higher values appear more luminous, square the average to reduce intensity of less fitting states.
-      return( (( pa_pct*wt_pa +  temp_pct*wt_temp + dens_pct*wt_dens + col_pct*wt_col + medi_pct*wt_medi + school_pct*wt_school ) / n ) ^ 2)
+      # Return a weighted average between 0-1.
+      fit = ( pa_pct*wt_pa +  temp_pct*wt_temp + dens_pct*wt_dens + col_pct*wt_col + medi_pct*wt_medi + school_pct*wt_school ) / n
+      return(fit ^ 2) # To make higher values appear more luminous, square the average to reduce intensity of less fitting states.
     } else {
       return(0)
     }
@@ -62,7 +63,7 @@ shinyServer(function(input, output, session) {
     selected_state = click$id
     state_data = df_master[df_master$State == selected_state,]
     
-    output$sel_state_name = renderText(click$id)
+    output$sel_state_name = renderText(click$id) #paste0(click$id, " Fit: ", state_data$fit, "%")
   
     output$plot_PA = renderPlot({
       a = df_PA %>% gather("Affiliation", "value", Democrat:Republican)
