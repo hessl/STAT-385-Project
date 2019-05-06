@@ -1,8 +1,13 @@
 print("Starting global.R script.")
 # global.R loads before ui.R and server.R
-library(shiny)
+
+# Make sure required packages are installed.
+pkg_list = c("ggplot2", "leaflet", "geojsonio", "flexdashboard", "tidyr", "dplyr", "rvest", "stringr")
+mia_pkgs = pkg_list[!(pkg_list %in% installed.packages()[,"Package"])]
+if(length(mia_pkgs) > 0) install.packages(mia_pkgs)
 
 # This is where packages are loaded into the global environment.
+library(shiny)
 library(ggplot2)
 library(leaflet)
 library(rvest)
@@ -10,7 +15,6 @@ library(geojsonio)
 library(stringr)
 library(tidyr)
 library(dplyr)
-#library(shinydashboard)
 library(flexdashboard)
 
 # Global variables.
