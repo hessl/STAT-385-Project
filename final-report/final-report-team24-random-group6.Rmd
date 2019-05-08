@@ -18,6 +18,43 @@ abstract: |
   | This project examines possible variables that might affect the desirability of a living in a state, including variables such as climate, population density, and median home value. This allows a user to find the most affordable area to live in while simultaneously satisfying their personal preferences of what type of environment they value.
 ---
 
+```{r set-options, include = FALSE}
+# Sets default chunk options
+knitr::opts_chunk$set(
+  # Figures/Images will be centered
+  fig.align = "center", 
+  # Code will not be displayed unless `echo = TRUE` is set for a chunk
+  echo = FALSE,
+  # Messages are suppressed
+  message = FALSE,
+  # Warnings are suppressed
+  warning = FALSE
+)
+```
+
+```{r install-and-load-packages, include = FALSE}
+# All packages needed should be loaded in this chunk
+pkg_list = c('knitr', 'kableExtra', 'magrittr')
+
+# Determine what packages are NOT installed already.
+to_install_pkgs = pkg_list[!(pkg_list %in% installed.packages()[,"Package"])]
+
+# Install the missing packages
+if(length(to_install_pkgs)) {
+  install.packages(to_install_pkgs, repos = "https://cloud.r-project.org")
+}
+
+# Load all packages
+sapply(pkg_list, require, character.only = TRUE)
+```
+
+\newpage
+
+# Introduction
+
+For our Project, we decided to make a program that makes it easy for the user to find a state in the United States that fits their desires. When people are choosing where to live, there are some standard factors that most people focus on in order to choose the best county to live in [@best-counties].
+
+With our program you are able to customize the parameters of multiple factors, and immediately see a map of the results that match your selections. This program uses `R` and `shiny` in order to make an easy to use and highly beneficial tool for people that are looking for states with certain attributes. The data being used is taken from multiple sources that have different information about each state in the United States. These factors include Political Affiliation, Average Temperature, Density, Cost of Living, Median Home Income, and School Rank. The user is able to select ranges and weights for each one in order to find the best state for them.
 
 # Methods
 
@@ -27,10 +64,11 @@ On the UI side, the main section is an interactive map of the United States, cre
 
 In the details tab, there is a stacked bar graph to show political affiliation, and gauges created with `flexdashboard` [@flexdashboard] that show every variable of interest for the selected state.
 
-```{r ui-default, echo = F, out.width = "350px", fig.cap = "UI Default"}
+
+```{r ui-default, out.width = "350px", fig.cap = "UI Default"}
 knitr::include_graphics("images/ui-default.png")
 ```
 
-```{r ui-details, echo = F, out.width = "350px", fig.cap = "UI Details"}
+```{r ui-details, out.width = "350px", fig.cap = "UI Details"}
 knitr::include_graphics("images/ui-details.png")
 ```
