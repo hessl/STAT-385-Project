@@ -56,6 +56,13 @@ For our Project, we decided to make a program that makes it easy for the user to
 
 With our program you are able to customize the parameters of multiple factors, and immediately see a map of the results that match your selections. This program uses `R` and `shiny` in order to make an easy to use and highly beneficial tool for people that are looking for states with certain attributes. The data being used is taken from multiple sources that have different information about each state in the United States. These factors include Political Affiliation, Average Temperature, Density, Cost of Living, Median Home Income, and School Rank. The user is able to select ranges and weights for each one in order to find the best state for them.
 
+# Related Work
+
+Initially, we discussed whether we should narrow in the types of factors to be included in the project. Specifically, factors that are all related to crimes, so that the goal of this project is to find the safest counties to live in. But, crime maps already exist. So, we changed our motivation to create a program that users can play around with in order to find the best counties to live in. There is already a map of crime data [@crime], a map of home prices [@zillow], and a website for climate data [@climate], but there isn't one that combines all of these, and more. So why not combine and utilize all these data to create user-friendly program? 
+
+In the end, we all pitched in on what a person most likely will consider before deciding the best state to live in. Factors that we have all decided to use for our project are political affiliate, average temperature, median household income, school ratings, and cost of living.For references for each factors we used [Pew Research Center](https://www.pewforum.org/religious-landscape-study/compare/party-affiliation/by/state/), [Current Results](https://www.currentresults.com/Weather/US/average-annual-state-temperatures.php), [Money](http://money.com/money/5177566/average-income-every-state-real-value/), [SchoolDigger](https://www.schooldigger.com/stateuserrankings.aspx), and [Missouri Economy](https://www.missourieconomy.org/indicators/cost_of_living/) respectively. 
+
+
 # Methods
 
 When the program starts, data is imported by web scraping. Web scraping for each variable begins with `rvest` [@rvest]. The HTML of each page is parsed into data frames. Variables of interest are selected from the data sets and combined into a master data frame.
