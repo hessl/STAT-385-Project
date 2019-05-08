@@ -71,6 +71,13 @@ On the UI side, the main section is an interactive map of the United States, cre
 
 In the details tab, there is a stacked bar graph to show political affiliation, and gauges created with `flexdashboard` [@flexdashboard] that show every variable of interest for the selected state.
 
+# Conclusion
+
+Essentially, this project is geared towards those looking for the most ideal state based off of their preferences of the provided variables. This is done by allowing users to choose the parameters for each variable and the weight of the parameter as well. For example, someone who is already retired and doesn't have kids may not care a lot about the nearby education systems as opposed to a family with kids, so they could set the school rank weight to 0. Or an individual may prefer relatively colder weather as opposed to something warmer like Florida. In this case they could set the weight of average temperature to 2 if it is more important to them.  
+
+In summary, someone could pick what variable(s) they value most (such as a cooler climate, or high school rank) and find the most suitable state based off of their own preferences.
+
+
 
 ```{r ui-default, out.width = "350px", fig.cap = "UI Default"}
 knitr::include_graphics("images/ui-default.png")
