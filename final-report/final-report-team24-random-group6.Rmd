@@ -12,15 +12,12 @@ output:
   html_document:
     df_print: paged
 bibliography: bibliography.bib
-header-includes: \usepackage{float}
+
 subtitle: STAT 385 SP2019 - Team 24
 abstract: |
   | This project examines possible variables that might affect the desirability of a living in a state, including variables such as climate, population density, and median home value. This allows a user to find the most affordable area to live in while simultaneously satisfying their personal preferences of what type of environment they value.
 ---
 
-```{r global_options, include=FALSE}
-knitr::opts_chunk$set(fig.pos = "H")
-```
 
 # Methods
 
