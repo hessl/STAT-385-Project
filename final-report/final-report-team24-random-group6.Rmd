@@ -84,8 +84,19 @@ knitr::include_graphics("images/ui-details.png")
 
 # Results
 
+After the user selected bounds and weights, the user will be able to see the US map with shaded in different colors, as discussed in the methods section. 
 
+```{r resultsui, out.width = "400px", fig.cap = "UI after variable selection", fig.pos = 'H'}
+knitr::include_graphics("images/resultsui.png")
+```
 
+Here we have an example. After selecting bounds and weights, we can see that there are 11 states to choose from as they colored completely in green. 
+
+After clicking one of the states, the details tab will show more statistics for each variable of interest. 
+
+```{r resultsdetail, out.width = "400px", fig.cap = "Details Tab", fig.pos = 'H'}
+knitr::include_graphics("images/resultsdetail.png")
+```
 
 # Discussion
 
