@@ -12,7 +12,28 @@ output:
   html_document:
     df_print: paged
 bibliography: bibliography.bib
+header-includes: \usepackage{float}
 subtitle: STAT 385 SP2019 - Team 24
 abstract: |
   | This project examines possible variables that might affect the desirability of a living in a state, including variables such as climate, population density, and median home value. This allows a user to find the most affordable area to live in while simultaneously satisfying their personal preferences of what type of environment they value.
 ---
+
+```{r global_options, include=FALSE}
+knitr::opts_chunk$set(fig.pos = "H")
+```
+
+# Methods
+
+When the program starts, data is imported by web scraping. Web scraping for each variable begins with `rvest` [@rvest]. The HTML of each page is parsed into data frames. Variables of interest are selected from the data sets and combined into a master data frame.
+
+On the UI side, the main section is an interactive map of the United States, created with `leaflet` [@leaflet]. There is a sidebar with two tabs. The first tab is a search panel. The user is able to select bounds for variables of interest (Avg. temperature, Crime rate, etc.), apply weights for how much they care about the variable, and search for states that match these criteria. A model is formed to light the states green based on how well they match the search parameters. States are completely gray do not match the selected parameters at all, while completely green states are a perfect fit. This communicates to the user which states are best for them. At any time, the user is able to select a state, which automatically switches to the second tab, Details.
+
+In the details tab, there is a stacked bar graph to show political affiliation, and gauges created with `flexdashboard` [@flexdashboard] that show every variable of interest for the selected state.
+
+```{r ui-default, echo = F, out.width = "350px", fig.cap = "UI Default"}
+knitr::include_graphics("images/ui-default.png")
+```
+
+```{r ui-details, echo = F, out.width = "350px", fig.cap = "UI Details"}
+knitr::include_graphics("images/ui-details.png")
+```
