@@ -52,7 +52,7 @@ sapply(pkg_list, require, character.only = TRUE)
 
 # Introduction
 
-For our Project, we decided to make a program that makes it easy for the user to find a state in the United States that fits their desires. When people are choosing where to live, there are some standard factors that most people focus on in order to choose the best county to live in [@best-counties].
+For our Project, we decided to make a program that makes it easy for the user to find a state in the United States that fits their desires. When people are choosing where to live, there are some standard factors that most people focus on in order to choose the best state to live in [@best-states].
 
 With our program you are able to customize the parameters of multiple factors, and immediately see a map of the results that match your selections. This program uses `R` and `shiny` in order to make an easy to use and highly beneficial tool for people that are looking for states with certain attributes. The data being used is taken from multiple sources that have different information about each state in the United States. These factors include Political Affiliation, Average Temperature, Density, Cost of Living, Median Home Income, and School Rank. The user is able to select ranges and weights for each one in order to find the best state for them.
 
@@ -81,6 +81,15 @@ knitr::include_graphics("images/ui-details.png")
 ```
 
 \newpage
+
+# Results
+
+
+
+
+# Discussion
+
+The states light up green based on how well they match your selection. The goal of the project is to find the best state or states. Therefore, the more green, the more favorable the state.
 
 # Conclusion
 
